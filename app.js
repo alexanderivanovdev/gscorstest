@@ -31,11 +31,15 @@ app.controller('doCtrl', function($scope, $http) {
 });
 app.controller('reqCtrl', function($scope, $http) {
     $scope.url = 'https://script.google.com/macros/s/AKfycbyIb3ZdA_SZY3UyVpNZSAdGsFiSZYuIzoAMwk-VK50_3YNaqlw/exec?' + $scope.req.p + '=' + $scope.req.type + '&callback=JSON_CALLBACK';
-    $http({
+    var settings = {
         method: $scope.req.type,
         url: $scope.url,
         data: {}
-    }).then(function(data) {
+    };
+    if ($scope.req.type == 'post') settings.headers = {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    };
+    $http(settings).then(function(data) {
         $scope.class = 'success';
         delete data.config.url;
         $scope.data = data;
