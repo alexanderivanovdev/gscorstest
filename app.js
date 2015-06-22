@@ -21,12 +21,6 @@ app.controller('doCtrl', function($scope, $http) {
     }, {
         type: 'jsonp',
         p: 'JSONP'
-    }, {
-        type: 'jsonp',
-        p: 'JSON'
-    }, {
-        type: 'jsonp',
-        p: 'TEXT'
     }];
 });
 app.controller('reqCtrl', function($scope, $http) {
